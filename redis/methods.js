@@ -19,7 +19,7 @@ const cacheMethods = {
 
   hset: async function (pkey, key, data) {
     try {
-      await redisClient.hset(pkey, { key: data });
+      await redisClient.hset(pkey, { [key]: data });
     } catch (error) {
       console.error("Error in hsetRedisClient ", error);
     }
@@ -30,6 +30,14 @@ const cacheMethods = {
       return await redisClient.hgetall(pkey);
     } catch (error) {
       console.error("Error in hgetAllRedisClient ", error);
+    }
+  },
+
+  deleteKey: async function (key) {
+    try {
+      await redisClient.del([key]);
+    } catch (error) {
+      console.error("Error in deleteKeyRedisClient ", error);
     }
   },
 };
