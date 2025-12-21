@@ -1,16 +1,13 @@
 import { Router } from "express";
 import { signIn } from "../controller/controller.js";
+import { auth } from "../middlewares/middleware.js";
+import protectedRouter from "./protected.js";
 
 const router = Router();
 
 router.route("/signin").post(signIn);
 
-// router.route("/status").post(auth);
+router.use("/protected",auth,protectedRouter);
 
-// router.route("/check").post();
-
-// router.route("/attendance").get();
-
-// router.route("/totalAttendance").get();
 
 export default router;
