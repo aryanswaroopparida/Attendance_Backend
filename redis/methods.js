@@ -33,6 +33,14 @@ const cacheMethods = {
     }
   },
 
+  hget: async function (pkey, key) {
+    try {
+      return await redisClient.hget(pkey, key);
+    } catch (error) {
+      console.error("Error in hget ", error);
+    }
+  },
+
   deleteKey: async function (key) {
     try {
       await redisClient.del([key]);
