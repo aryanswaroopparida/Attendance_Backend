@@ -47,7 +47,7 @@ export const status = async (req, res) => {
       userBody.loginTime = timeIST();
     } else {
       const userData = JSON.parse(ifUserExist);
-      // userBody.loginTime = userData.loginTime;
+      userBody.loginTime = userData.loginTime;
       if (body.status == "OUT") {
         userBody.totalTime =
           userData.totalTime + userBody.lastSeen - userData.lastSeen;
