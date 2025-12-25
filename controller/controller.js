@@ -45,7 +45,6 @@ export const status = async (req, res) => {
     const ifUserExist = await cacheMethods.hget("attendance", body.email);
     if (!ifUserExist) {
       userBody.loginTime = timeIST();
-      await cacheMethods.set(body.email, 1);
     } else {
       const userData = JSON.parse(ifUserExist);
       userBody.loginTime = userData.loginTime;
@@ -54,21 +53,10 @@ export const status = async (req, res) => {
           userData.totalTime + userBody.lastSeen - userData.lastSeen;
       }
     }
-    await cacheMethods.hset("attendance", body.email, JSON.stringify(userBody));
-    return res.status(200).json({ data: "Success True" });
+    await cacheMethods.hset("attendance",body.email,JSON.stringify(userBody));
+    return res.status(200).json({data : "Success True"});
   } catch (error) {
     console.error("Error in status ", error);
     return res.status(500).json({ data: `Error in status ${error}` });
-  }
-};
-
-export const internetStatus = async (req, res) => {
-  try {
-    const body = req.body;
-    await cacheMethods.incr(body.email);
-    return res.status(200).json({data:"internetStatus Success"});
-  } catch (error) {
-    console.error("Error in internetStatus ", error);
-    return res.status(500).json({ data: `Error in internetStatus ${error}` });
   }
 };
