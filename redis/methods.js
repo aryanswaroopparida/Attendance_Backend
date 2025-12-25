@@ -48,6 +48,14 @@ const cacheMethods = {
       console.error("Error in deleteKeyRedisClient ", error);
     }
   },
+
+  incr: async function (key) {
+    try {
+      await redisClient.incr(key);
+    } catch (error) {
+      console.error("Error in incr ", error);
+    }
+  },
 };
 
 export default cacheMethods;
