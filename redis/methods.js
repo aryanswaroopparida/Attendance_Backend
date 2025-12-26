@@ -56,6 +56,14 @@ const cacheMethods = {
       console.error("Error in incr ", error);
     }
   },
+
+  flushDB: async function(){
+    try {
+      await redisClient.flushdb();   // current DB only
+    } catch (error) {
+      console.error("Error in flushDB ",error);
+    }
+  }
 };
 
 export default cacheMethods;

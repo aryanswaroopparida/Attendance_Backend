@@ -15,6 +15,8 @@ const config = {
   },
   REDIS_URL: process.env.REDIS_URL,
   JWT_SECRET: process.env.JWT_SECRET,
+  ATTENDANCE_REDIS_KEY: "attendance",
+  THRESHOLD_COUNT: 6,
 };
 
 export default config;
