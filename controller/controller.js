@@ -2,7 +2,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import config from "../config/config.js";
 import cacheMethods from "../redis/methods.js";
-import timeIST from "../utils/time.js";
+import time from "../utils/time.js";
 
 export const signIn = async (req, res) => {
   const body = req.body;
@@ -36,15 +36,14 @@ export const status = async (req, res) => {
   try {
     const body = req.body;
     let userBody = {
-      email: body.email,
       status: body.status,
       loginTime: "",
       lastSeen: Date.now(),
       totalTime: 0,
     };
-    const ifUserExist = await cacheMethods.hget("attendance", body.email);
+    const ifUserExist = await cacheMethods.hget(config.ATTENDANCE_REDIS_KEY, body.email);
     if (!ifUserExist) {
-      userBody.loginTime = timeIST();
+      userBody.loginTime = time.getTimeInIST();
       await cacheMethods.set(body.email, 1);
     } else {
       const userData = JSON.parse(ifUserExist);
@@ -54,7 +53,7 @@ export const status = async (req, res) => {
           userData.totalTime + userBody.lastSeen - userData.lastSeen;
       }
     }
-    await cacheMethods.hset("attendance", body.email, JSON.stringify(userBody));
+    await cacheMethods.hset(config.ATTENDANCE_REDIS_KEY, body.email, JSON.stringify(userBody));
     return res.status(200).json({ data: "Success True" });
   } catch (error) {
     console.error("Error in status ", error);

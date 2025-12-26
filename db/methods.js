@@ -17,7 +17,7 @@ const DBMethod = {
     }
   },
 
-  createUser: async (model, data) => {
+  create: async (model, data) => {
     try {
       const createUser = await model.create(data);
       return createUser;

@@ -1,11 +1,14 @@
 import express from "express";
 import config from "./config/config.js";
-import connect from "./db/connect.js";
+import connectToDB from "./db/connect.js";
 import router from "./routes/routes.js";
+import { attendanceAtNight } from "./cronJobs/cron.js";
 
-connect();
+connectToDB();
 
 const app = express();
+
+attendanceAtNight();
 
 app.use(express.json())
 
