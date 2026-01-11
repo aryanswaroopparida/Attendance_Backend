@@ -20,27 +20,6 @@ A scalable and modular backend system for managing attendance records with autom
 - JavaScript (ES Modules)
 - Database (configurable: MongoDB / SQL)
 
-## Project Structure
-
-attendance-backend/
-├── config/
-│   └── config.js
-├── db/
-│   └── methods.js
-├── models/
-│   └── attendance.js
-├── redis/
-│   └── methods.js
-├── utils/
-│   ├── cron.js
-│   └── time.js
-├── controllers/
-│   └── attendance.js
-├── routes/
-│   └── attendance.js
-├── app.js
-└── package.json
-
 ## Installation
 
 1. Clone the repository
@@ -60,8 +39,7 @@ attendance-backend/
 
 PORT=3000  
 DB_URI=your_database_url  
-REDIS_URL=your_redis_url  
-TIMEZONE=Asia/Kolkata  
+REDIS_URL=your_redis_url   
 
 ## Cron Jobs
 
@@ -71,12 +49,6 @@ The system uses cron jobs for automated attendance processing such as:
 - Scheduled cleanup tasks
 
 All cron jobs are timezone-aware.
-
-## API Endpoints (Sample)
-
-POST   /attendance/mark        → Mark attendance  
-GET    /attendance/:userId     → Get user attendance  
-GET    /attendance/report      → Attendance summary  
 
 ## Caching
 
