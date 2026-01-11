@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { testProtected,status,internetStatus } from "../controller/controller.js";
+import { testProtected,status,internetStatus,monthAttendance ,attendanceOfIndividual } from "../controller/controller.js";
 
 
 const router = Router();
@@ -11,9 +11,9 @@ router.route("/status").post(status); // v1/protected/status
 
 router.route("/check").post(internetStatus);
 
-// router.route("/attendance").get();
+router.route("/attendanceOfIndividual/:email/:currentMonth").get(attendanceOfIndividual);
 
-// router.route("/totalAttendance").get();
+router.route("/totalAttendance/:currentMonth").get(monthAttendance);
 
 export default router
 

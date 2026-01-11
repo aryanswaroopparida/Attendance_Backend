@@ -1,8 +1,11 @@
-import cron from "node-cron"
+import cron from "node-cron";
 
-export function cronJob (exp,func){
-    cron.schedule(exp,func);
+export function cronJob(exp, func) {
+  cron.schedule(exp, func, {
+    timezone: "Asia/Kolkata",
+  });
 }
+
 
 
 

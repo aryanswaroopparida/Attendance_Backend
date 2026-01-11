@@ -8,12 +8,21 @@ const DBMethod = {
     }
   },
 
-  findAll: async (model) => {
+  findAll: async (model, createdStart, createdEnd) => {
     try {
-      const allUser = await model.find();
+      const query = {};
+
+      if (createdStart || createdEnd) {
+        query.createdAt = {};
+        if (createdStart) query.createdAt.$gte = createdStart;
+        if (createdEnd) query.createdAt.$lte = createdEnd;
+      }
+
+      const allUser = await model.find(query);
       return allUser;
     } catch (error) {
-      console.error("Error in findAll ", error);
+      console.error("Error in findAll", error);
+      throw error;
     }
   },
 
@@ -27,4 +36,4 @@ const DBMethod = {
   },
 };
 
-export default DBMethod
+export default DBMethod;
