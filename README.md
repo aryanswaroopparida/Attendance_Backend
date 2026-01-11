@@ -18,7 +18,7 @@ A scalable and modular backend system for managing attendance records with autom
 - Redis
 - node-cron
 - JavaScript (ES Modules)
-- Database (configurable: MongoDB / SQL)
+- Database (MongoDB)
 
 ## Installation
 
