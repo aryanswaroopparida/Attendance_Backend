@@ -23,7 +23,7 @@ A scalable and modular backend system for managing attendance records with autom
 ## Installation
 
 1. Clone the repository
-   git clone https://github.com/your-username/attendance-backend.git
+   git clone this repo
    cd attendance-backend
 
 2. Install dependencies
